@@ -13,7 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="8dp"
+        tools:background="@drawable/game_bg">
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -66,14 +67,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@null"
-            android:overScrollMode="never"
+            android:layoutAnimation="@anim/layout_animation_pop_in"
             android:orientation="vertical"
+            android:overScrollMode="never"
             app:adapter="@{viewModel.adapter}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvCurrent"
+            app:scheduleLayoutAnimation="@{viewModel.scheduleLayoutAnimation}"
             app:spanCount="3"
             tools:itemCount="9"
             tools:listitem="@layout/item_cell" />

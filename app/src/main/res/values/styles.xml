@@ -6,7 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:background">@drawable/game_bg</item>
         <item name="android:fontFamily">@font/sofadi_one_regular</item>
     </style>
 

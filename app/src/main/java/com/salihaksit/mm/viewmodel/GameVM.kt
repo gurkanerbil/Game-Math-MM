@@ -24,6 +24,7 @@ class GameVM @Inject constructor(
     val firstNumber = MutableLiveData<String>().apply { value = "" }
     val endNumber = MutableLiveData<String>().apply { value = "" }
     val remainingMoveCount = MutableLiveData<Int>().apply { value = 0 }
+    val scheduleLayoutAnimation = MutableLiveData<Boolean>()
 
     init {
         gameUseCase.observeGameCreation().subscribe({
@@ -57,6 +58,7 @@ class GameVM @Inject constructor(
 
         cellList.shuffle()
         adapter.setList(cellList)
+        scheduleLayoutAnimation.value = true
     }
 
     override fun onItemClick(view: View, item: CellViewEntity) {
