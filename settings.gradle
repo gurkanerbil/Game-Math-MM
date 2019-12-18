@@ -1,0 +1,2 @@
+include ':app', ':gamecreator', ':domain', ':core'
+rootProject.name='MM'

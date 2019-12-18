@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="obj"
+            type="com.salihaksit.mm.data.CellViewEntity" />
+
+        <variable
+            name="clickListener"
+            type="com.salihaksit.mm.view.adapter.ItemClickListener&lt;com.salihaksit.mm.data.CellViewEntity&gt;" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/cell_bg"
+        android:gravity="center"
+        android:onClick="@{(v) -> clickListener.onItemClick(v, obj)}"
+        android:text="@{obj.option}"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        tools:text="32" />
+</layout>
