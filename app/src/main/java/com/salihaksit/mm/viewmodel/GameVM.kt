@@ -2,6 +2,7 @@ package com.salihaksit.mm.viewmodel
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.salihaksit.core.GameEntity
 import com.salihaksit.domain.GetGameUseCase
 import com.salihaksit.domain.PlayGameUseCase
 import com.salihaksit.mm.data.CellViewEntity
@@ -17,26 +18,17 @@ class GameVM @Inject constructor(
     ItemClickListener<CellViewEntity> {
 
     private val cellList = MutableList(9) { CellViewEntity("") }
+    private lateinit var gameEntity: GameEntity
 
     val adapter = BaseRecyclerAdapter(cellList, this)
     val firstNumber = MutableLiveData<String>().apply { value = "" }
     val endNumber = MutableLiveData<String>().apply { value = "" }
+    val remainingMoveCount = MutableLiveData<Int>().apply { value = 0 }
 
     init {
         gameUseCase.observeGameCreation().subscribe({
-            firstNumber.postValue(it.firstNumber)
-            endNumber.postValue(it.endNumber)
-
-            val size = it.uniqueElements.size
-            cellList.forEachIndexed { index, cellViewEntity ->
-                if (index < size)
-                    cellViewEntity.option = it.uniqueElements[index]
-                else
-                    cellViewEntity.option = ""
-            }
-
-            cellList.shuffle()
-            adapter.setList(cellList)
+            gameEntity = it
+            setGame()
         }, { println(it) }).addTo(disposableList)
 
         newGame()
@@ -46,8 +38,32 @@ class GameVM @Inject constructor(
         gameUseCase.createNewGame()
     }
 
+    fun restart() {
+        setGame()
+    }
+
+    private fun setGame() {
+        firstNumber.postValue(gameEntity.firstNumber)
+        endNumber.postValue(gameEntity.endNumber)
+        remainingMoveCount.postValue(gameEntity.moveCount)
+
+        val size = gameEntity.uniqueElements.size
+        cellList.forEachIndexed { index, cellViewEntity ->
+            if (index < size)
+                cellViewEntity.option = gameEntity.uniqueElements[index]
+            else
+                cellViewEntity.option = ""
+        }
+
+        cellList.shuffle()
+        adapter.setList(cellList)
+    }
+
     override fun onItemClick(view: View, item: CellViewEntity) {
         if (item.option.isEmpty())
+            return
+
+        if (remainingMoveCount.value == 0)
             return
 
         val tmp = playGameUseCase.getCalculatedPhrase(
@@ -56,5 +72,6 @@ class GameVM @Inject constructor(
         )
 
         firstNumber.postValue(tmp)
+        remainingMoveCount.postValue((remainingMoveCount.value!! - 1))
     }
 }

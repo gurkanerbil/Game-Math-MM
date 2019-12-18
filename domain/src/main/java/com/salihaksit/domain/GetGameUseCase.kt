@@ -14,10 +14,11 @@ class GetGameUseCase @Inject constructor(private val game: Game) {
     fun observeGameCreation(): Observable<GameEntity> {
         return game.source.map {
             GameEntity(
-                it.first.toString(),
-                it.second[0],
-                it.second,
-                it.second.subList(1, it.second.size).distinct()
+                endNumber = it.first.toString(),
+                firstNumber = it.second[0],
+                moveCount = it.second.size - 1,
+                steps = it.second,
+                uniqueElements = it.second.subList(1, it.second.size).distinct()
             )
         }
     }

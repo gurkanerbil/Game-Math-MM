@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MM</string>
     <string name="aim">Hedef : %s</string>
+    <string name="remaining_move_count">Hak : %s</string>
 </resources>

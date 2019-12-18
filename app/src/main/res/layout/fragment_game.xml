@@ -19,18 +19,33 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTarget"
-            android:layout_width="180dp"
+            android:layout_width="168dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/aim_bg"
             android:gravity="center"
-            android:text="@{String.format(@string/aim,viewModel.endNumber)}"
+            android:text="@{String.format(@string/aim, viewModel.endNumber)}"
             android:textColor="#C7715B"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Hedef  -> 12" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRemainingMoveCount"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/aim_bg"
+            android:gravity="center"
+            android:text="@{String.format(@string/remaining_move_count, viewModel.remainingMoveCount)}"
+            android:textColor="#0288D1"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvTarget"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hak : 5" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCurrent"
@@ -80,17 +95,18 @@
             android:layout_marginTop="32dp"
             android:onClick="@{() -> viewModel.newGame()}"
             android:text="new"
-            app:layout_constraintEnd_toStartOf="@id/btnClear"
+            app:layout_constraintEnd_toStartOf="@id/btnRestart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewBottomRecyclerOptions" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnClear"
+            android:id="@+id/btnRestart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:text="clear"
+            android:onClick="@{() -> viewModel.restart()}"
+            android:text="restart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnNewGame"
             app:layout_constraintTop_toBottomOf="@id/viewBottomRecyclerOptions" />
