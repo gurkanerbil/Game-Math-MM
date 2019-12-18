@@ -19,8 +19,8 @@ class GameVM @Inject constructor(
     private val cellList = MutableList(9) { CellViewEntity("") }
 
     val adapter = BaseRecyclerAdapter(cellList, this)
-    val firstNumber = MutableLiveData<String>()
-    val endNumber = MutableLiveData<String>()
+    val firstNumber = MutableLiveData<String>().apply { value = "" }
+    val endNumber = MutableLiveData<String>().apply { value = "" }
 
     init {
         gameUseCase.observeGameCreation().subscribe({
@@ -38,6 +38,8 @@ class GameVM @Inject constructor(
             cellList.shuffle()
             adapter.setList(cellList)
         }, { println(it) }).addTo(disposableList)
+
+        newGame()
     }
 
     fun newGame() {
