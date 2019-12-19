@@ -2,4 +2,6 @@
     <string name="app_name">MM</string>
     <string name="aim">Hedef : %s</string>
     <string name="remaining_move_count">Hak : %s</string>
+    <string name="info_success">Geçtin !!</string>
+    <string name="info_warning">Hamlen Kalmadı !!</string>
 </resources>

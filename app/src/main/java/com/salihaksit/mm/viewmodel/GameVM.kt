@@ -25,6 +25,7 @@ class GameVM @Inject constructor(
     val endNumber = MutableLiveData<String>().apply { value = "" }
     val remainingMoveCount = MutableLiveData<Int>().apply { value = 0 }
     val scheduleLayoutAnimation = MutableLiveData<Boolean>()
+    val infoStatus = MutableLiveData<Int>().apply { value = NO_INFO }
 
     init {
         gameUseCase.observeGameCreation().subscribe({
@@ -44,9 +45,11 @@ class GameVM @Inject constructor(
     }
 
     private fun setGame() {
-        firstNumber.postValue(gameEntity.firstNumber)
-        endNumber.postValue(gameEntity.endNumber)
-        remainingMoveCount.postValue(gameEntity.moveCount)
+        infoStatus.value = NO_INFO
+
+        firstNumber.value = gameEntity.firstNumber
+        endNumber.value = gameEntity.endNumber
+        remainingMoveCount.value = gameEntity.moveCount
 
         val size = gameEntity.uniqueElements.size
         cellList.forEachIndexed { index, cellViewEntity ->
@@ -65,6 +68,9 @@ class GameVM @Inject constructor(
         if (item.option.isEmpty())
             return
 
+        if (infoStatus.value != NO_INFO)
+            return
+
         if (remainingMoveCount.value == 0)
             return
 
@@ -73,7 +79,20 @@ class GameVM @Inject constructor(
             item.option
         )
 
-        firstNumber.postValue(tmp)
-        remainingMoveCount.postValue((remainingMoveCount.value!! - 1))
+        firstNumber.value = tmp
+        remainingMoveCount.value = (remainingMoveCount.value!! - 1)
+
+        if (tmp == endNumber.value) {
+            infoStatus.value = SUCCESS_INFO
+        } else if (remainingMoveCount.value == 0) {
+            infoStatus.value = WARNING_INFO
+        }
+
+    }
+
+    companion object{
+        const val NO_INFO = 0
+        const val SUCCESS_INFO = 1
+        const val WARNING_INFO = 2
     }
 }

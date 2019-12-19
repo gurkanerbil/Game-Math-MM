@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.salihaksit.mm.viewmodel.GameVM" />
@@ -113,5 +115,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnNewGame"
             app:layout_constraintTop_toBottomOf="@id/viewBottomRecyclerOptions" />
+
+        <blink
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toBottomOf="@id/btnRestart">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvInfo"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@{viewModel.infoStatus == viewModel.SUCCESS_INFO ? @drawable/info_success_bg : @drawable/info_warning_bg  }"
+                android:gravity="center"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:text="@{viewModel.infoStatus == viewModel.SUCCESS_INFO ? @string/info_success : @string/info_warning}"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:visibility="@{viewModel.infoStatus == viewModel.NO_INFO ? View.GONE : View.VISIBLE}"
+                app:layout_constraintTop_toBottomOf="@id/tvTarget"
+                tools:text="Hesapladınız" />
+        </blink>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
