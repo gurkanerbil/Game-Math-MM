@@ -7,7 +7,7 @@ import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 import kotlin.random.Random
 
-class Game @Inject constructor() {
+class Game @Inject constructor(private val gameFilters: GameFilters) {
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -17,10 +17,13 @@ class Game @Inject constructor() {
         Observable.just(getNewGame())
             .subscribe(
                 {
-                    if (it.first > 1) {
-                        source.onNext(it)
-                        clearDisposables()
-                    } else throw Exception()
+                    for (filter in gameFilters.filters()) {
+                        if (filter.isValid(it).not())
+                            throw Exception()
+                    }
+
+                    source.onNext(it)
+                    clearDisposables()
                 },
                 {
                     getOptimumGame()
