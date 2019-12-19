@@ -60,11 +60,19 @@ class Game @Inject constructor() {
 
         moves.add("$endNumber")
 
+        var previousNumber = Int.MIN_VALUE
+        var previousOperator = CUT() as Operator
         for (i in 0 until moveCount + 1) {
             val number = numbers[Random.nextInt(numberCount)]
-            val operator = getRandomOperator()
+            var operator = getRandomOperator()
+            if (number == previousNumber && operator.isReverseWith(previousOperator)) {
+                operator = operator.getNonReversedOperator()
+            }
+
             endNumber = operator.calculate(endNumber, number)
             moves.add(if (operator is CUT) operator.type else "${operator.type}$number")
+            previousNumber = number
+            previousOperator = operator
         }
 
         return Pair(endNumber, moves)

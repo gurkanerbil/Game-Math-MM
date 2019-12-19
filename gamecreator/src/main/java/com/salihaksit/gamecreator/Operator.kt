@@ -1,5 +1,7 @@
 package com.salihaksit.gamecreator
 
+import kotlin.random.Random
+
 sealed class Operator(open val type: String = "", open val calculate: (Int, Int) -> Int)
 
 data class ADDITION(
@@ -36,5 +38,25 @@ fun String.toOperator(): Operator {
         "/" -> DIVISION()
         "<<" -> CUT()
         else -> ADDITION()
+    }
+}
+
+fun Operator.isReverseWith(operator: Operator): Boolean {
+    return when (this) {
+        is ADDITION -> operator == SUBTRACTION()
+        is SUBTRACTION -> operator == ADDITION()
+        is MULTIPLICATION -> operator == DIVISION()
+        is DIVISION -> operator == MULTIPLICATION()
+        else -> false
+    }
+}
+
+fun Operator.getNonReversedOperator(): Operator {
+    val strongOperators = arrayListOf(MULTIPLICATION(), DIVISION(), CUT())
+    val weakOperators = arrayListOf(ADDITION(), SUBTRACTION(), CUT())
+    return when (this) {
+        is ADDITION, is SUBTRACTION -> strongOperators[Random.nextInt(strongOperators.size)]
+        is MULTIPLICATION, is DIVISION -> weakOperators[Random.nextInt(weakOperators.size)]
+        else -> CUT()
     }
 }
