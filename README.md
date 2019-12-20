@@ -1,6 +1,8 @@
 # Game-Math-MM
 random game generator
 
+![](https://media.giphy.com/media/Qa46eDNLvQnMtqlJaB/giphy.gif)
+
 `info`
 * Rx
 * Dagger
