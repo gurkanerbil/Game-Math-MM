@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MM</string>
+    <string name="aim">Hedef : %s</string>
+    <string name="remaining_move_count">Hamle : %s</string>
+    <string name="info_success">Çözdün !!</string>
+    <string name="info_warning">Hamlen Kalmadı !!</string>
+    <string name="new_game">Yeni Oyun</string>
+    <string name="restart_game">Oyunu Sıfırla</string>
+    <string name="start">Start</string>
+</resources>

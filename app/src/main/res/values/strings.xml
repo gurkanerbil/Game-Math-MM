@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">MM</string>
-    <string name="aim">Hedef : %s</string>
-    <string name="remaining_move_count">Hak : %s</string>
-    <string name="info_success">Geçtin !!</string>
-    <string name="info_warning">Hamlen Kalmadı !!</string>
+    <string name="aim">Aim : %s</string>
+    <string name="remaining_move_count">Move : %s</string>
+    <string name="info_success">You Solved !!</string>
+    <string name="info_warning">No More Move !!</string>
+    <string name="new_game">New Game</string>
+    <string name="restart_game">Restart Game</string>
+    <string name="start">Start</string>
 </resources>

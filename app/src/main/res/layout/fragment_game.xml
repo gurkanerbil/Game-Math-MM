@@ -16,19 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"
-        tools:background="@drawable/game_bg">
+        tools:background="@drawable/game_bg"
+        tools:ignore="SpUsage">
 
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTarget"
-            android:layout_width="168dp"
+            android:layout_width="152dp"
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/aim_bg"
             android:gravity="center"
             android:text="@{String.format(@string/aim, viewModel.endNumber)}"
             android:textColor="#C7715B"
-            android:textSize="18dp"
+            android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,11 +44,11 @@
             android:gravity="center"
             android:text="@{String.format(@string/remaining_move_count, viewModel.remainingMoveCount)}"
             android:textColor="#0288D1"
-            android:textSize="18dp"
+            android:textSize="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvTarget"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Hak : 5" />
+            tools:text="Hamle : 5" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCurrent"
@@ -99,7 +100,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
             android:onClick="@{() -> viewModel.newGame()}"
-            android:text="new"
+            android:text="@string/new_game"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toStartOf="@id/btnRestart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewBottomRecyclerOptions" />
@@ -111,7 +113,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
             android:onClick="@{() -> viewModel.restart()}"
-            android:text="restart"
+            android:text="@string/restart_game"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnNewGame"
             app:layout_constraintTop_toBottomOf="@id/viewBottomRecyclerOptions" />
