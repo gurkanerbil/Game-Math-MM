@@ -12,17 +12,11 @@ import dagger.Provides
 class UseCaseModule {
 
     @Provides
-    fun provideGetGameUseCase(game: Game): GetGameUseCase {
-        return GetGameUseCase(game)
-    }
+    fun provideGetGameUseCase(game: Game) = GetGameUseCase(game)
 
     @Provides
-    fun providePlayGameUseCase(play: Play): PlayGameUseCase {
-        return PlayGameUseCase(play)
-    }
+    fun providePlayGameUseCase(play: Play) = PlayGameUseCase(play)
 
     @Provides
-    fun provideTimeUseCase(): TimeUseCase {
-        return TimeUseCase()
-    }
+    fun provideTimeUseCase() = TimeUseCase()
 }
