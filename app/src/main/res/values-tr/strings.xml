@@ -7,5 +7,8 @@
     <string name="info_warning">Hamlen Kalmadı !!</string>
     <string name="new_game">Yeni Oyun</string>
     <string name="restart_game">Oyunu Sıfırla</string>
-    <string name="start">Start</string>
+    <string name="play_random_game">Rastgele Oyun</string>
+    <string name="play_against_time">Zamanlı Oyun</string>
+    <string name="solved_game_count">Çözülen : %s</string>
+
 </resources>

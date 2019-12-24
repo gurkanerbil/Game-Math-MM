@@ -6,5 +6,7 @@
     <string name="info_warning">No More Move !!</string>
     <string name="new_game">New Game</string>
     <string name="restart_game">Restart Game</string>
-    <string name="start">Start</string>
+    <string name="play_random_game">Play Random Game</string>
+    <string name="play_against_time">Play Against Time</string>
+    <string name="solved_game_count">Solved : %s</string>
 </resources>

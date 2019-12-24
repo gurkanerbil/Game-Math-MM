@@ -6,23 +6,38 @@
 
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
         tools:background="@drawable/game_bg"
         tools:ignore="SpUsage">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnPlay"
-            android:layout_width="160dp"
+            android:id="@+id/btnPlayRegular"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
             android:background="#fff"
-            android:text="@string/start"
+            android:text="@string/play_random_game"
             android:textAllCaps="false"
             android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold"
-            tools:text="Başla" />
-    </FrameLayout>
+            tools:text="Rastgele Oyun" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlayAgainstTime"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#fff"
+            android:text="@string/play_against_time"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="Zamanlı Oyun" />
+    </LinearLayout>
 </layout>

@@ -19,6 +19,21 @@
         tools:background="@drawable/game_bg"
         tools:ignore="SpUsage">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRemainingTime"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/aim_bg"
+            android:gravity="center"
+            android:text="@{viewModel.remainingTime}"
+            android:textColor="#FBC02D"
+            android:textSize="17dp"
+            android:visibility="@{viewModel.visibilityTimer ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toStartOf="@id/tvTarget"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="30" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTarget"
@@ -93,6 +108,20 @@
             android:background="@drawable/line"
             app:layout_constraintTop_toBottomOf="@id/recyclerOptions" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvWinCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@{String.format(@string/solved_game_count, viewModel.solvedGameCount)}"
+            android:textColor="#FFFFFF"
+            android:textSize="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewBottomRecyclerOptions"
+            tools:text="Çözülen  -> 12" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNewGame"
             android:layout_width="wrap_content"
@@ -112,6 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
+            android:enabled="@{viewModel.infoStatus != viewModel.SUCCESS_INFO}"
             android:onClick="@{() -> viewModel.restart()}"
             android:text="@string/restart_game"
             android:textAllCaps="false"

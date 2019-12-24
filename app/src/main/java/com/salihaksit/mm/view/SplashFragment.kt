@@ -1,5 +1,6 @@
 package com.salihaksit.mm.view
 
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.salihaksit.mm.R
 import com.salihaksit.mm.databinding.FragmentSplashBinding
@@ -11,7 +12,13 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, BaseViewModel>() {
         get() = R.layout.fragment_splash
 
     override fun init() {
-        btnPlay.setOnClickListener { findNavController().navigate(R.id.action_splashFragment_to_gameFragment) }
+        btnPlayRegular.setOnClickListener { findNavController().navigate(R.id.action_splashFragment_to_gameFragment) }
+        btnPlayAgainstTime.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_splashFragment_to_gameFragment_withTime,
+                bundleOf("isGameWithTime" to true)
+            )
+        }
     }
 
     override val viewModelClass: Class<BaseViewModel>

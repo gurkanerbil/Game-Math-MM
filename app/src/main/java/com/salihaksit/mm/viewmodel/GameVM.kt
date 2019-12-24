@@ -8,7 +8,9 @@ import com.salihaksit.domain.PlayGameUseCase
 import com.salihaksit.mm.data.CellViewEntity
 import com.salihaksit.mm.view.adapter.BaseRecyclerAdapter
 import com.salihaksit.mm.view.adapter.ItemClickListener
+import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class GameVM @Inject constructor(
@@ -27,6 +29,10 @@ class GameVM @Inject constructor(
     val scheduleLayoutAnimation = MutableLiveData<Boolean>()
     val infoStatus = MutableLiveData<Int>().apply { value = NO_INFO }
 
+    val remainingTime = MutableLiveData<String>().apply { value = "$GAME_DURATION" }
+    val visibilityTimer = MutableLiveData<Boolean>().apply { value = false }
+    val solvedGameCount = MutableLiveData<Int>().apply { value = 0 }
+
     init {
         gameUseCase.observeGameCreation().subscribe({
             gameEntity = it
@@ -42,6 +48,23 @@ class GameVM @Inject constructor(
 
     fun restart() {
         setGame()
+    }
+
+    fun setTimer(gameWithTime: Boolean) {
+        if (gameWithTime.not())
+            return
+
+        visibilityTimer.value = true
+
+        Observable
+            .interval(1, TimeUnit.SECONDS)
+            .take(GAME_DURATION)
+            .doOnTerminate { remainingTime.postValue("$ZERO_SECOND") }
+            .map { GAME_DURATION - it }
+            .subscribe({
+                remainingTime.postValue("$it")
+            }, {})
+            .addTo(disposableList)
     }
 
     private fun setGame() {
@@ -84,15 +107,19 @@ class GameVM @Inject constructor(
 
         if (tmp == endNumber.value) {
             infoStatus.value = SUCCESS_INFO
+            solvedGameCount.value = (solvedGameCount.value!! + 1)
         } else if (remainingMoveCount.value == 0) {
             infoStatus.value = WARNING_INFO
         }
 
     }
 
-    companion object{
+    companion object {
         const val NO_INFO = 0
         const val SUCCESS_INFO = 1
         const val WARNING_INFO = 2
+
+        const val GAME_DURATION = 30L
+        const val ZERO_SECOND = 0
     }
 }
