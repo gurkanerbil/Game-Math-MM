@@ -4,17 +4,17 @@ import androidx.lifecycle.MutableLiveData
 import com.salihaksit.core.GameEntity
 import com.salihaksit.domain.GetGameUseCase
 import com.salihaksit.domain.PlayGameUseCase
+import com.salihaksit.domain.TimeUseCase
 import com.salihaksit.mm.data.CellViewEntity
 import com.salihaksit.mm.view.adapter.BaseRecyclerAdapter
 import com.salihaksit.mm.view.adapter.ItemClickListener
-import io.reactivex.Observable
 import io.reactivex.rxkotlin.addTo
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class GameVM @Inject constructor(
     private val gameUseCase: GetGameUseCase,
-    private val playGameUseCase: PlayGameUseCase
+    private val playGameUseCase: PlayGameUseCase,
+    private val timeUseCase: TimeUseCase
 ) : BaseViewModel(),
     ItemClickListener<CellViewEntity> {
 
@@ -28,7 +28,7 @@ class GameVM @Inject constructor(
     val scheduleLayoutAnimation = MutableLiveData<Boolean>()
     val infoStatus = MutableLiveData<Int>().apply { value = NO_INFO }
 
-    val remainingTime = MutableLiveData<String>().apply { value = "$GAME_DURATION" }
+    val remainingTime = MutableLiveData<String>().apply { value = "" }
     val visibilityTimer = MutableLiveData<Boolean>().apply { value = false }
     val solvedGameCount = MutableLiveData<Int>().apply { value = 0 }
 
@@ -55,15 +55,13 @@ class GameVM @Inject constructor(
 
         visibilityTimer.value = true
 
-        Observable
-            .interval(1, TimeUnit.SECONDS)
-            .take(GAME_DURATION)
+        timeUseCase.getCountDownTimer(GAME_DURATION)
             .doOnTerminate { remainingTime.postValue("$ZERO_SECOND") }
-            .map { GAME_DURATION - it }
             .subscribe({
                 remainingTime.postValue("$it")
             }, {})
             .addTo(disposableList)
+
     }
 
     private fun setGame() {
