@@ -1,5 +1,5 @@
 # Game-Math-MM
-random game generator
+![](https://travis-ci.com/salihaksit7/Game-Math-MM.svg?branch=master)
 
 ![](https://media.giphy.com/media/Qa46eDNLvQnMtqlJaB/giphy.gif)
 
