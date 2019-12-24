@@ -1,6 +1,5 @@
 package com.salihaksit.mm.viewmodel
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.salihaksit.core.GameEntity
 import com.salihaksit.domain.GetGameUseCase
@@ -87,7 +86,7 @@ class GameVM @Inject constructor(
         scheduleLayoutAnimation.value = true
     }
 
-    override fun onItemClick(view: View, item: CellViewEntity) {
+    override fun onItemClick(item: CellViewEntity) {
         if (item.option.isEmpty())
             return
 

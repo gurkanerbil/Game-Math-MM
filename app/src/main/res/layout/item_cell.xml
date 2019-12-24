@@ -20,7 +20,7 @@
         android:layout_margin="8dp"
         android:background="@drawable/cell_bg"
         android:gravity="center"
-        android:onClick="@{(v) -> clickListener.onItemClick(v, obj)}"
+        android:onClick="@{() -> clickListener.onItemClick(obj)}"
         android:text="@{obj.option}"
         android:textColor="#fff"
         android:textSize="20dp"
