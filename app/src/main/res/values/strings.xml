@@ -9,4 +9,7 @@
     <string name="play_random_game">Play Random Game</string>
     <string name="play_against_time">Play Against Time</string>
     <string name="solved_game_count">Solved : %s</string>
+    <string name="warning_time_out">Do you want to reset timer?</string>
+    <string name="warning_time_out_yes">Yes</string>
+    <string name="warning_time_out_no">No</string>
 </resources>

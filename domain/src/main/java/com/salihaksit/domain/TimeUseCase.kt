@@ -9,7 +9,7 @@ class TimeUseCase @Inject constructor() {
     fun getCountDownTimer(gameDuration: Long): Observable<Long> {
         return Observable
             .interval(1, TimeUnit.SECONDS)
-            .take(gameDuration)
+            .take(gameDuration + 1)
             .map { gameDuration - it }
     }
 }

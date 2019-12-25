@@ -10,5 +10,8 @@
     <string name="play_random_game">Rastgele Oyun</string>
     <string name="play_against_time">Zamanlı Oyun</string>
     <string name="solved_game_count">Çözülen : %s</string>
+    <string name="warning_time_out">Tekrardan başlamak ister misiniz?</string>
+    <string name="warning_time_out_yes">Evet</string>
+    <string name="warning_time_out_no">Hayır</string>
 
 </resources>
