@@ -10,6 +10,7 @@
 * ViewModel
 * Unit tests 
   * for FilterTypes
+* Travis
 
 ```Json
     aim -> adding features in a clean way
@@ -19,4 +20,4 @@
   - [ ] dynamic themes
   - [ ] create your own game
   - [ ] share game
-  - [ ] play against time
+  - [x] play against time
