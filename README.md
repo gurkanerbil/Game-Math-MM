@@ -21,3 +21,7 @@
   - [ ] create your own game
   - [ ] share game
   - [x] play against time
+  
+License
+------
+Game-Math-MM is available under the MIT license. See the [LICENSE](https://github.com/salihaksit7/Game-Math-MM/blob/master/LICENSE) file for more info
